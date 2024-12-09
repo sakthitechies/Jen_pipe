@@ -6,16 +6,16 @@ pipeline{
   }
   stages{
     stage('Build'){
-      when{
-          expression{
-            params.ConditionExecute
-          }
-      }
       steps{
         echo 'Hello'
       }
     }
     stage('Test'){
+      when{
+          expression{
+            params.ConditionExecute
+          }
+      }
       steps{
         echo "testing the   version ${params.MyVersion}"
       }
