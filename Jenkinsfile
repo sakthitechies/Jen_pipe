@@ -3,20 +3,17 @@ pipeline{
   tools{
     maven 'Maven-3'
   }
-  environment{
-    SERVER_CREDENTIALS = Credential('CredentialID')
-  }
   parameters{
     choice(name:'MyVersion', choices:['1.1','1.2','1.3'], description:'Choose the version')
     booleanParam(name:'ConditionExecute', defaultValue:'true', description:'Executes stages based on condition')
   }
   stages{
-    stage('Build'){
+    stage("Build"){
       steps{
         echo 'Hello'
       }
     }
-    stage('Test'){
+    stage("Test"){
       when{
           expression{
             params.ConditionExecute
@@ -26,7 +23,7 @@ pipeline{
         echo "testing the   version ${params.MyVersion}"
       }
     }
-    stage('Deploy'){
+    stage("Deploy"){
       steps{
         echo 'Deploying'
       }
